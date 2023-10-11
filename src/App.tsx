@@ -1,27 +1,35 @@
-import { useEffect } from "react";
-import { Routes, Route, useNavigate, useLocation } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 
 import Header from "./header";
 import Sidebar from "./sidebar";
 import Appointments from "./appointments";
 import Pets from "./pets";
+import Login from "./login";
+import ProtectedRoute from "./helpers/ProtectedRoute";
 
 function App() {
-  const navigate = useNavigate();
-  const location = useLocation();
-
-  useEffect(() => {
-    if (location.pathname === "/") navigate("/consultas");
-  }, [navigate, location]);
-
   return (
     <div className="font-inter grid grid-cols-[386px_auto]">
       <Header />
       <Sidebar />
       <Routes>
-        <Route path="/" element={<Appointments />} />
-        <Route path="/consultas" element={<Appointments />} />
-        <Route path="/pets" element={<Pets />} />
+        <Route path="/" element={<Login />} />
+        <Route
+          path="/consultas"
+          element={
+            <ProtectedRoute>
+              <Appointments />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/pets"
+          element={
+            <ProtectedRoute>
+              <Pets />
+            </ProtectedRoute>
+          }
+        />
       </Routes>
     </div>
   );
