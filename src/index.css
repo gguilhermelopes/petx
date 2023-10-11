@@ -134,3 +134,9 @@ table {
 a {
   text-decoration: none;
 }
+
+body {
+  min-height: 100vh;
+  max-width: 100%;
+  background-color: #ededed;
+}

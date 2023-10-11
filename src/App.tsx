@@ -1,9 +1,11 @@
 import Header from "./header";
+import Sidebar from "./sidebar";
 
 function App() {
   return (
-    <div className="bg-c2 min-h-screen max-w-full font-inter">
+    <div className="font-inter relative">
       <Header />
+      <Sidebar />
     </div>
   );
 }
