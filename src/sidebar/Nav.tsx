@@ -11,26 +11,32 @@ const navData = [
   {
     label: "Consultas",
     icon: consultasIcon,
+    path: "/consultas",
   },
   {
     label: "Pets",
     icon: petIcon,
+    path: "/pets",
   },
   {
     label: "Veterinários",
     icon: vetIcon,
+    path: "/veterinarios",
   },
   {
     label: "Responsáveis",
     icon: petOwnerIcon,
+    path: "/responsaveis",
   },
   {
     label: "Usuários",
     icon: userIcon,
+    path: "/usuarios",
   },
   {
     label: "Contato",
     icon: contactIcon,
+    path: "/contato",
   },
 ];
 
@@ -38,7 +44,12 @@ const Nav = () => {
   return (
     <div className="flex flex-col gap-7">
       {navData.map((item) => (
-        <NavItem key={item.label} label={item.label} icon={item.icon} />
+        <NavItem
+          key={item.label}
+          label={item.label}
+          icon={item.icon}
+          path={item.path}
+        />
       ))}
     </div>
   );
