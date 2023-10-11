@@ -140,3 +140,7 @@ body {
   max-width: 100%;
   background-color: #ededed;
 }
+
+:root {
+  font-size: 12px;
+}
