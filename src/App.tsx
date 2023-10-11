@@ -1,7 +1,7 @@
 import "./App.css";
 
 function App() {
-  return <p>App</p>;
+  return <p className="font-bold">App</p>;
 }
 
 export default App;

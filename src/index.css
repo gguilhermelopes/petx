@@ -130,3 +130,6 @@ a {
 }
 
 /* IMPORTS AND GENERAL STYLES */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
