@@ -1,7 +1,11 @@
-import "./App.css";
+import Header from "./header";
 
 function App() {
-  return <p className="text-teste">App</p>;
+  return (
+    <div className="bg-c2 min-h-screen max-w-full font-inter">
+      <Header />
+    </div>
+  );
 }
 
 export default App;

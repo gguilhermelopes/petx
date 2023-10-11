@@ -10,12 +10,14 @@ export default {
       c1: "#f7f7f7",
       c2: "#ededed",
     },
-
     extend: {
       fontFamily: {
         inter: ["Inter", "sans-serif"],
         ibmPlexMono: ['"IBM Plex Mono"', "monospace"],
         manrope: ["Manrope", "monospace"],
+      },
+      backgroundImage: {
+        "expand-user": "url('/src/assets/expand-user.svg')",
       },
     },
   },
