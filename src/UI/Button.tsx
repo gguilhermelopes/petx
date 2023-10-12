@@ -25,7 +25,7 @@ const Button = ({ children, variation, ...props }: IButton) => {
   return (
     <button
       style={buttonStyle}
-      className="px-14 py-4 rounded-2xl font-bold text-[1.5rem] outline-none transition-all hover:opacity-80"
+      className="px-14 py-4 rounded-2xl font-bold text-[1.5rem] outline-none transition-all hover:opacity-80 disabled:opacity-50"
       {...props}
     >
       {children}

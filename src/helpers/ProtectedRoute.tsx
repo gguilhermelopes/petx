@@ -1,8 +1,10 @@
+import { useContext } from "react";
 import { Navigate } from "react-router-dom";
+import { UserContext } from "../contexts/UserContext";
 
 const ProtectedRoute = ({ children }: React.PropsWithChildren) => {
-  const login = null;
-  return login ? children : <Navigate to={"/"} />;
+  const { user } = useContext(UserContext);
+  return user ? children : <Navigate to={"/"} />;
 };
 
 export default ProtectedRoute;

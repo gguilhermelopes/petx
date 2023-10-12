@@ -1,10 +1,13 @@
 import { useState } from "react";
 import Button from "../UI/Button";
 import Input from "../UI/Input";
+import useLogin from "../hooks/useLogin";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  const { fetchUser } = useLogin();
 
   return (
     <div className="col-start-2 p-12">
@@ -15,7 +18,7 @@ const Login = () => {
       <h2 className="font-semibold text-[2rem] text-p3 mb-16">
         Faça seu login abaixo:
       </h2>
-      <form>
+      <form onSubmit={(event) => event.preventDefault()}>
         <div className="flex gap-4 mb-8">
           <Input
             label="Email"
@@ -30,7 +33,9 @@ const Login = () => {
             onChange={({ target }) => setPassword(target.value)}
           />
         </div>
-        <Button variation="PRIMARY">Login</Button>
+        <Button variation="PRIMARY" onClick={() => fetchUser(email, password)}>
+          Login
+        </Button>
       </form>
     </div>
   );
