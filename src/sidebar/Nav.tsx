@@ -1,4 +1,4 @@
-import consultasIcon from "../assets/consultas-icon.svg";
+import appointmentsIcon from "../assets/consultas-icon.svg";
 import petIcon from "../assets/pet-icon.svg";
 import vetIcon from "../assets/vet-icon.svg";
 import petOwnerIcon from "../assets/responsavel-icon.svg";
@@ -10,7 +10,7 @@ import NavItem from "./NavItem";
 const navData = [
   {
     label: "Consultas",
-    icon: consultasIcon,
+    icon: appointmentsIcon,
     path: "/consultas",
   },
   {
