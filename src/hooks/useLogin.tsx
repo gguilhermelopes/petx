@@ -11,8 +11,8 @@ export type IUser = {
 };
 
 const useLogin = () => {
-  const { user, setUser } = useContext(UserContext);
-  const [loading, setLoading] = useState(false);
+  const { user, setUser, loading, setLoading } = useContext(UserContext);
+
   const [error, setError] = useState<string | null>(null);
 
   const navigate = useNavigate();
