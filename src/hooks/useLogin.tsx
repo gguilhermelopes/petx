@@ -4,6 +4,7 @@ import * as jose from "jose";
 
 import { UserContext } from "../contexts/UserContext";
 import { useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
 
 export type IUser = {
   email: string;
@@ -40,8 +41,8 @@ const useLogin = () => {
 
       window.localStorage.setItem("token", token);
       setUser(user.data);
+      toast.success("Login feito com sucesso!");
       navigate("/consultas");
-      console.log(token);
     } catch (error) {
       if (error instanceof Error) setError(error.message);
     } finally {
