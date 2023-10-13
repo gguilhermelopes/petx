@@ -32,9 +32,10 @@ const useLogin = () => {
       const { payload } = await jose.jwtVerify(token, JWT_SECRET);
       if (!payload) throw new Error("Usuário não encontrado.");
 
-      const user = await axios.get(`${API_URL}/users/${payload.sub}`, {
+      const user = await axios.post(`${API_URL}/users`, payload.sub, {
         headers: {
           Authorization: `Bearer ${token}`,
+          "Content-Type": "text/plain",
         },
       });
       if (!user) throw new Error("Usuário não encontrado.");
