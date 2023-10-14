@@ -66,9 +66,9 @@ const useLogin = () => {
   };
 
   const autoLogin = async () => {
-    setLoading(true);
     const token = window.localStorage.getItem("token");
     if (token) {
+      setLoading(true);
       try {
         const user = await getUser(token);
         setUser(user);
