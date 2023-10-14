@@ -16,7 +16,7 @@ const Header = () => {
           </button>
         </>
       ) : (
-        <p>
+        <p className="font-semibold text-[1.125rem] me-4">
           Sem usuário logado. <br />
           Faça o login!
         </p>
