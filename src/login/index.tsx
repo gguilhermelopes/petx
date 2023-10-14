@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Button from "../UI/Button";
 import Input from "../UI/Input";
 import useLogin from "../hooks/useLogin";
@@ -7,7 +7,14 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const { fetchUser } = useLogin();
+  const { fetchUser, error, autoLogin, isLoggedIn, setIsLoggedIn } = useLogin();
+
+  useEffect(() => {
+    if (!isLoggedIn) {
+      autoLogin();
+      setIsLoggedIn(true);
+    }
+  }, [autoLogin, isLoggedIn, setIsLoggedIn]);
 
   return (
     <div className="col-start-2 p-12">
@@ -36,6 +43,9 @@ const Login = () => {
         <Button variation="PRIMARY" onClick={() => fetchUser(email, password)}>
           Login
         </Button>
+        <p className="mt-8 text-[#b32404] text-[1.25rem]">
+          {error && "Senha ou usuário inválidos!"}
+        </p>
       </form>
     </div>
   );
