@@ -30,12 +30,14 @@ const Login = () => {
           <Input
             label="Email"
             id="email"
+            type="email"
             value={email}
             onChange={({ target }) => setEmail(target.value)}
           />
           <Input
             label="Senha"
             id="password"
+            type="password"
             value={password}
             onChange={({ target }) => setPassword(target.value)}
           />

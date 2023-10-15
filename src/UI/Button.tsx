@@ -5,7 +5,7 @@ type IButton = ComponentProps<"button"> & {
   variation: "PRIMARY" | "OUTLINE" | "DANGER";
 };
 
-const Button = ({ children, variation, ...props }: IButton) => {
+const Button = ({ children, variation, style, ...props }: IButton) => {
   const { loading } = useContext(UserContext);
 
   const getBackgroundColor = (variation: "PRIMARY" | "OUTLINE" | "DANGER") => {
@@ -24,6 +24,7 @@ const Button = ({ children, variation, ...props }: IButton) => {
   const buttonStyle = {
     backgroundColor: getBackgroundColor(variation),
     color: variation === "OUTLINE" ? "#1c0229" : "#ffffff",
+    ...style,
   };
   return (
     <button

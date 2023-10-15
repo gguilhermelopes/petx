@@ -9,13 +9,16 @@ import { UserContext } from "../contexts/UserContext";
 export type IUser = {
   email: string;
   name: string;
+  role: "ADMIN" | "USER";
 };
 
 const useLogin = () => {
   const { setUser, loading, setLoading } = useContext(UserContext);
   const [error, setError] = useState<string | null>(null);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+
   const navigate = useNavigate();
+
   const API_URL = import.meta.env.VITE_API_URL;
   const JWT_SECRET = new TextEncoder().encode(import.meta.env.VITE_JWT_SECRET);
 
@@ -72,14 +75,25 @@ const useLogin = () => {
       try {
         const user = await getUser(token);
         setUser(user);
+
         navigate("/consultas");
         toast.success(`Bom ter você de volta, ${user?.name.split(" ")[0]}`);
       } catch (error) {
         if (error instanceof Error) setError(error.message);
+        window.localStorage.removeItem("token");
+        setUser(undefined);
       } finally {
         setLoading(false);
       }
     }
+  };
+
+  const logout = () => {
+    setUser(undefined);
+    window.localStorage.removeItem("token");
+    setIsLoggedIn(false);
+    setLoading(false);
+    navigate("/");
   };
 
   return {
@@ -89,6 +103,7 @@ const useLogin = () => {
     autoLogin,
     isLoggedIn,
     setIsLoggedIn,
+    logout,
   };
 };
 export default useLogin;
