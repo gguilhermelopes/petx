@@ -22,10 +22,10 @@ const UserModal = ({ user, setModal, logout }: UserModalProps) => {
   return (
     <div
       onClick={handleOutsideModalClick}
-      className="flex justify-end px-10 bg-p3 bg-opacity-20 z-10 absolute h-screen w-full"
+      className="flex justify-end px-10 bg-[#000] bg-opacity-40 z-10 absolute h-screen w-full"
     >
-      <div className="bg-p1 flex flex-col rounded-2xl p-6 self-start mt-36 font-bold text-[1.25rem]">
-        <div className="flex flex-col items-end p-6 gap-2 bg-c0 rounded-xl">
+      <div className="bg-p1 flex flex-col rounded-2xl py-6 px-12 self-start mt-36 font-bold text-[1.25rem]">
+        <div className="flex flex-col items-end py-6 px-12 gap-2 bg-c0 rounded-xl">
           <p>{user?.email}</p>
           <p>{user?.role === "ADMIN" ? "ADMIN ⚙️" : "USER 💻"}</p>
         </div>
