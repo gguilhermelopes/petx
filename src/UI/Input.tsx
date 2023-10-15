@@ -7,7 +7,7 @@ type IInput = ComponentProps<"input"> & {
 
 const Input = ({ label, id, ...props }: IInput) => {
   return (
-    <div className="flex flex-col max-w-[235px] gap-3 text-[1.25rem]">
+    <div className="flex flex-col max-w-[190px] gap-3 text-[1.25rem]">
       <label
         className="bg-[#e8e1ec] px-8 py-4 rounded-2xl font-bold"
         htmlFor={id}
