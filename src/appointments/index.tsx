@@ -2,11 +2,11 @@ import { useState } from "react";
 
 import Button from "../UI/Button";
 import InfoCard from "../UI/InfoCard";
-import groupAppointmentsPerHour from "../helpers/GroupAppointmentsPerHour";
 import useFetch from "../hooks/useFetch";
 import AppointmentsFilters from "./AppointmentsFilters";
 import formatDate from "../helpers/formatDate";
-import findVetWithMostAppointments from "../helpers/findVetWithmostAppointments";
+import findVetWithMostAppointments from "../helpers/findVetWithMostAppointments";
+import groupAppointmentsPerHour from "../helpers/groupAppointmentsPerHour";
 
 const Appointments = () => {
   const [day, setDay] = useState(formatDate(new Date("2023-11-16")));
@@ -36,24 +36,37 @@ const Appointments = () => {
       </div>
       <AppointmentsFilters day={day} setDay={setDay} />
       <div className="flex gap-6 mt-14">
-        <InfoCard title="Consultas hoje" info={numberOfAppointments} />
+        <InfoCard title="Consultas do dia" info={numberOfAppointments} />
         <InfoCard
           title="Veterinário destaque"
           info={
             mostAppointmentsVet
               ? `Dr.(a) ${mostAppointmentsVet}`
-              : "Sem consultas hoje"
+              : "Sem consultas no dia"
           }
         />
       </div>
-      <ul>
+      <ul className="mt-14 text-[1.125rem] text-p3 flex flex-col gap-8 justify-center">
         {groupedData.map((item) => (
-          <li key={item.hour} className="flex">
-            <span>{item.hour}</span>
-            <ul>
-              {item.appointments.map((appointment) => (
-                <li key={appointment.id}>{appointment.pet}</li>
-              ))}
+          <li key={item.hour} className="flex gap-5">
+            <span className="font-bold p-2 bg-c1 rounded-xl">{item.hour}</span>
+            <ul className="text-[1.125rem] flex gap-4">
+              {item.appointments.length ? (
+                item.appointments.map((appointment) => (
+                  <li
+                    className="bg-c0 p-2 rounded-xl flex gap-6"
+                    key={appointment.id}
+                  >
+                    <span className="text-p2 font-bold">{appointment.pet}</span>{" "}
+                    <span>{appointment.petOwner}</span>{" "}
+                    <span className="font-ibmPlexMono">
+                      Dr.(a) {appointment.veterinarian}
+                    </span>
+                  </li>
+                ))
+              ) : (
+                <p className="bg-c0 p-2 rounded-xl flex gap-6">Horário livre</p>
+              )}
             </ul>
           </li>
         ))}

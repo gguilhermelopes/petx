@@ -1,6 +1,5 @@
 import { Dispatch, SetStateAction, MouseEvent } from "react";
 
-import { IUser } from "../hooks/useLogin";
 import Button from "../UI/Button";
 
 type UserModalProps = {

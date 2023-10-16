@@ -7,6 +7,8 @@ const findVetWithMostAppointments = (appointments: IAppointment[]) => {
     } else appointmentsByVet[appointment.veterinarian] = 1;
   });
 
+  console.log(appointments);
+
   let mostAppointments = 0;
   let mostAppointmentsVet = null;
   for (const vet in appointmentsByVet) {
