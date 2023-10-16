@@ -1,28 +1,32 @@
 import { useState } from "react";
+
 import Button from "../UI/Button";
 import InfoCard from "../UI/InfoCard";
 import groupAppointmentsPerHour from "../helpers/GroupAppointmentsPerHour";
 import useFetch from "../hooks/useFetch";
 import AppointmentsFilters from "./AppointmentsFilters";
-
-const formatDate = (date: Date) => {
-  const dd = String(date.getDate()).padStart(2, "0");
-  const mm = String(date.getMonth() + 1).padStart(2, "0");
-  const yyyy = date.getFullYear();
-
-  return `${yyyy}-${mm}-${dd}`;
-};
+import formatDate from "../helpers/formatDate";
+import findVetWithMostAppointments from "../helpers/findVetWithmostAppointments";
 
 const Appointments = () => {
-  const [day, setDay] = useState(formatDate(new Date()));
+  const [day, setDay] = useState(formatDate(new Date("2023-11-16")));
   const { data } = useFetch<IAppointment[]>("GET", "appointments");
-  if (!data) return <p>No appointments today.</p>;
+
+  if (!data) return;
 
   const appointmentsByDay = (date: string) => {
     return data.filter((item) => formatDate(new Date(item.dateTime)) === date);
   };
 
+  const mostAppointmentsVet = findVetWithMostAppointments(
+    appointmentsByDay(day)
+  );
+
   const groupedData = groupAppointmentsPerHour(appointmentsByDay(day));
+
+  const numberOfAppointments = groupedData
+    .reduce((a, b) => a + b.appointments.length, 0)
+    .toString();
 
   return (
     <div className="col-start-2 p-12">
@@ -32,8 +36,15 @@ const Appointments = () => {
       </div>
       <AppointmentsFilters day={day} setDay={setDay} />
       <div className="flex gap-6 mt-14">
-        <InfoCard title="Consultas hoje" info="16" />
-        <InfoCard title="Veterinário destaque" info="Dr. João Carlos" />
+        <InfoCard title="Consultas hoje" info={numberOfAppointments} />
+        <InfoCard
+          title="Veterinário destaque"
+          info={
+            mostAppointmentsVet
+              ? `Dr.(a) ${mostAppointmentsVet}`
+              : "Sem consultas hoje"
+          }
+        />
       </div>
       <ul>
         {groupedData.map((item) => (
