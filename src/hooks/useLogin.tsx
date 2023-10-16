@@ -6,12 +6,6 @@ import toast from "react-hot-toast";
 
 import { UserContext } from "../contexts/UserContext";
 
-export type IUser = {
-  email: string;
-  name: string;
-  role: "ADMIN" | "USER";
-};
-
 const useLogin = () => {
   const { setUser, loading, setLoading } = useContext(UserContext);
   const [error, setError] = useState<string | null>(null);
@@ -23,8 +17,8 @@ const useLogin = () => {
   const JWT_SECRET = new TextEncoder().encode(import.meta.env.VITE_JWT_SECRET);
 
   const fetchUser = async (email: string, password: string) => {
+    setLoading(true);
     try {
-      setLoading(true);
       const response = await axios.post(`${API_URL}/login`, {
         email,
         password,
