@@ -14,7 +14,7 @@ const AppointmentsFilters = ({ day, setDay }: AppointmentsFiltersProps) => {
         label="Dia"
         type="date"
         value={day}
-        onChange={(event) => setDay(event.target.value)}
+        onChange={({ target }) => setDay(target.value)}
       />
       <Input id="veterinarian" label="Veterinário" />
       <Input id="petOwner" label="Responsável" />

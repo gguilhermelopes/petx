@@ -69,9 +69,9 @@ const useLogin = () => {
       try {
         const user = await getUser(token);
         setUser(user);
-
         navigate("/consultas");
-        toast.success(`Bom ter você de volta, ${user?.name.split(" ")[0]}`);
+        if (user)
+          toast.success(`Bom ter você de volta, ${user.name.split(" ")[0]}`);
       } catch (error) {
         if (error instanceof Error) setError(error.message);
         window.localStorage.removeItem("token");

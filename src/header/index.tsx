@@ -3,6 +3,7 @@ import { useContext, useState } from "react";
 import { UserContext } from "../contexts/UserContext";
 import UserModal from "./UserModal";
 import useLogin from "../hooks/useLogin";
+import ModalContainer from "../UI/ModalContainer";
 
 const Header = () => {
   const { user } = useContext(UserContext);
@@ -12,7 +13,9 @@ const Header = () => {
   return (
     <>
       {isModalOn && (
-        <UserModal user={user} setModal={setIsModalOn} logout={logout} />
+        <ModalContainer setModal={setIsModalOn} direction="end">
+          <UserModal setModal={setIsModalOn} user={user} logout={logout} />
+        </ModalContainer>
       )}
       <header className="bg-c0 flex justify-end items-center p-8 gap-5 col-span-full h-[120px]">
         {user ? (

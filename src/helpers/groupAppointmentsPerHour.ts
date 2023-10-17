@@ -1,12 +1,7 @@
-const groupAppointmentsPerHour = (appointments: IAppointment[]) => {
-  const getFullHours = (start: number, end: number) => {
-    const fullHours = [];
-    for (let i = start; i <= end; i++) {
-      fullHours.push(`${i}:00`);
-    }
-    return fullHours;
-  };
+import getFullHours from "./getFullHours";
 
+const groupAppointmentsPerHour = (appointments: IAppointment[]) => {
+  const workingHours = getFullHours(9, 18);
   const perHourAppointments: { [hour: string]: IAppointment[] } = {};
 
   appointments.forEach((appointment) => {
@@ -18,7 +13,6 @@ const groupAppointmentsPerHour = (appointments: IAppointment[]) => {
     perHourAppointments[hour].push(appointment);
   });
 
-  const workingHours = getFullHours(9, 18);
   const groupedAppointments = workingHours.map((hour) => ({
     hour: `${hour.split(":")[0].padStart(2, "0")}:${hour.split(":")[1]}`,
     appointments: perHourAppointments[hour] || [],
